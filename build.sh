@@ -1,5 +1,5 @@
 GIT_URL="https://github.com/pywr/pywr.git"
-GIT_TAG="v2.0"
+GIT_TAG="v0.2"
 
 git clone ${GIT_URL}
 cd pywr
