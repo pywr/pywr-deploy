@@ -3,6 +3,7 @@ GIT_TAG="v2.0"
 
 git clone ${GIT_URL}
 cd pywr
+git fetch --tags
 git checkout ${GIT_TAG}
 
-conda build conda-recipe
+conda build ../conda-recipe
