@@ -3,6 +3,8 @@ language: python
 sudo: false
 
 env:
+    global:
+        - secure: "gcgOvzJsHQEB+6rQlKNDAgprS2vHlqDftywEHRTLVmmTOAPfcJr0ffamtnotEmGJZ1ivc5xsRqel18U9eXxqstYTFxKC2EVb1SfO0W3cQ8NDd6WI5fj1QASdvqixUHiENh3TbwLZ9XWIp2hDXdxs9NNT4/K623CabQgi8cSXCNw2gIeb+3ed4hy/0mDTNt+qt6A7cAXMDZ3PwXWZ00r1anC7lbWqPAEd7/stmVe7UKmwbP4h+utCCZg8zHvtJzqqU9n8CHveMWFsUdOd+1xcYAEYxVy7rBYdSgeu+/hrKOT0B2ArS6mesLLqk2KSe4UO1Aoh7KvyxxkNsxeWW0gx4Zig6DS/EYnk7OLEelwx5+A9QF36cfyRSNNquETkHUOSBE87LiEAuBpRFJSdL7WwmHyA8zziK3QK5VXdrmIeOyWM0AipJHeP6nkzoKC4r2JnW3jcmzYRtqV+MWewNZ/wUnZQl0mfyg9KG2hHjH+u0+oFUeQUHehJC6HTmdlSQKRntooyeTBdp6NigQxERJKZHcQ73Kwl3JXObmwAzZpHZnRCOoWcIZczgNdLaaHgCD3Nsm1nhJZClBHFtCvHQUhihtahxC0BGY/+vEdviuL1MsbnF5sZvmCjnZ6fUqKrVG0mptdluu6mKirQrEgbtSTH3uCfe2579N5neE/QJ/KWn34="
     matrix:
         - CONDA_NPY=110  CONDA_PY=34
         - CONDA_NPY=112  CONDA_PY=36
@@ -23,3 +25,4 @@ install:
 
 script:
     - bash build.sh
+    - bash conda_upload.sh
