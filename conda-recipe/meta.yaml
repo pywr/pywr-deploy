@@ -7,7 +7,7 @@ package:
     version: {{ version }}
 
 source:
-    path: pywr/
+    path: ../pywr/
 
 build:
     number: {{ build_number }}
