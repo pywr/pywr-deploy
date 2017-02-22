@@ -1,0 +1,25 @@
+language: python
+
+sudo: false
+
+env:
+    matrix:
+        - CONDA_NPY=110  CONDA_PY=34
+        - CONDA_NPY=112  CONDA_PY=36
+        - CONDA_NPY=112  CONDA_PY=36  FEATURE_OLDGLIBC=1
+
+install:
+    - |
+      MINICONDA_URL="https://repo.continuum.io/miniconda"
+      MINICONDA_FILE="Miniconda3-latest-Linux-x86_64.sh"
+      wget ${MINICONDA_URL}/${MINICONDA_FILE}
+      bash ${MINICONDA_FILE} -b
+      export PATH=/home/travis/miniconda3/bin:$PATH
+      conda update --yes conda
+      conda config --add channels snorfalorpagus
+      conda config --add channels conda-forge
+      conda config --set show_channel_urls true
+      conda install --yes --quiet conda-build anaconda-client
+
+script:
+    - bash build.sh
