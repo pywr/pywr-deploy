@@ -6,4 +6,5 @@ cd pywr
 git fetch --tags
 git checkout ${GIT_TAG}
 
+cp conda-recipe/build.sh ../conda-recipe/
 conda build ../conda-recipe
