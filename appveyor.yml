@@ -1,0 +1,36 @@
+environment:
+    matrix:
+        - TARGET_ARCH: x64
+          CONDA_PY: 34
+          CONDA_NPY: 110
+          CONDA_INSTALL_LOCN: C:\\Miniconda35-x64
+        
+        - TARGET_ARCH: x64
+          CONDA_PY: 36
+          CONDA_NPY: 112
+          CONDA_INSTALL_LOCN: C:\\Miniconda35-x64
+
+platform:
+    - x64
+
+install:
+    # cygwin breaks conda-build
+    - cmd: rmdir C:\cygwin /s /q
+    
+    # activate conda
+    - cmd: call %CONDA_INSTALL_LOCN%\Scripts\activate.bat
+    - cmd: set PYTHONUNBUFFERED=1
+
+    # add our channels
+    - cmd: conda config --set show_channel_urls true
+    - cmd: conda config --add channels conda-forge
+    - cmd: conda config --add channels snorfalorpagus
+
+    # install build tools
+    - cmd: conda install -n root --quiet --yes conda-build anaconda-client
+
+# Skip .NET project specific build phase.
+build: off
+
+test_script:
+    - cmd: conda build recipe --quiet
