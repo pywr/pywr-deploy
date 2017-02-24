@@ -1,0 +1,51 @@
+{% set name = "pywr" %}
+{% set version = "0.2" %}
+{% set git_rev = "v0.2" %}
+{% set build_number = 0 %}
+
+package:
+    name: {{ name|lower }}
+    version: {{ version }}
+
+source:
+    git_url: https://github.com/pywr/pywr.git
+    git_rev: {{ git_rev }}
+
+build:
+    number: {{ build_number }}
+
+requirements:
+    build:
+        - python
+        - setuptools
+        - numpy x.x
+        - cython
+        - glpk
+        - lpsolve
+        - future
+        - packaging
+
+    run:
+        - python
+        - numpy x.x
+        - pandas
+        - glpk
+        - lpsolve
+        - future
+        - packaging
+        - networkx
+        - pytables
+        - xlrd
+        - scipy
+
+test:
+    requires:
+        - pytest
+    source_files:
+        - tests/*
+
+about:
+    home: https://github.com/pywr/pywr
+    license: GPL
+    license_file: LICENSE.txt
+    summary: Pywr is a generalised network resource allocation model written in Python
