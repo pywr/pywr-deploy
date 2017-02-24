@@ -1,5 +1,5 @@
 environment:
-    ANACONDA_API_TOKEN:
+    CONDA_UPLOAD_TOKEN:
         secure: +E+lnd0AiBkFt2M0Wn7MR/B7zA4DUUb+3YkL2zmshIPenc32kL5cfpjhx5AZY9MY
     
     matrix:
@@ -37,4 +37,4 @@ build: off
 
 test_script:
     - cmd: conda build recipe --quiet
-    - cmd: anaconda upload -u pywr ${HOME}/miniconda3/conda-bld/linux-64/*.tar.bz2 --force
+    - cmd: anaconda upload -t %CONDA_UPLOAD_TOKEN% -u pywr %CONDA_INSTALL_LOCN%\conda-bld\win-64\*.tar.bz2 --force
