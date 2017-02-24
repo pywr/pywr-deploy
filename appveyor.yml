@@ -1,4 +1,7 @@
 environment:
+    ANACONDA_API_TOKEN:
+        secure: +E+lnd0AiBkFt2M0Wn7MR/B7zA4DUUb+3YkL2zmshIPenc32kL5cfpjhx5AZY9MY
+    
     matrix:
         - TARGET_ARCH: x64
           CONDA_PY: 34
@@ -34,3 +37,4 @@ build: off
 
 test_script:
     - cmd: conda build recipe --quiet
+    - cmd: anaconda upload -u pywr ${HOME}/miniconda3/conda-bld/linux-64/*.tar.bz2 --force
