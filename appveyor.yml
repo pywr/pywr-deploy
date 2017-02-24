@@ -1,6 +1,6 @@
 environment:
     CONDA_UPLOAD_TOKEN:
-        secure: +E+lnd0AiBkFt2M0Wn7MR/B7zA4DUUb+3YkL2zmshIPenc32kL5cfpjhx5AZY9MY
+        secure: qgP92GRS8WQsvxiUGJ6eoNcqY7Qu6nP9SkQi5yM+aPI2CbCv2y13kAIl+6sE3HqD
     
     matrix:
         - TARGET_ARCH: x64
@@ -37,4 +37,4 @@ build: off
 
 test_script:
     - cmd: conda build recipe --quiet
-    - cmd: anaconda upload -t %CONDA_UPLOAD_TOKEN% -u pywr %CONDA_INSTALL_LOCN%\conda-bld\win-64\*.tar.bz2 --force
+    - cmd: anaconda -t %CONDA_UPLOAD_TOKEN% upload -u pywr %CONDA_INSTALL_LOCN%\conda-bld\win-64\*.tar.bz2 --force
