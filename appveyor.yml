@@ -1,3 +1,7 @@
+branches:
+  only:
+    - master
+
 environment:
     CONDA_UPLOAD_TOKEN:
         secure: qgP92GRS8WQsvxiUGJ6eoNcqY7Qu6nP9SkQi5yM+aPI2CbCv2y13kAIl+6sE3HqD
