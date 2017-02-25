@@ -21,7 +21,7 @@ build:
     number: {{ build_number }}
 
     script_env:
-        - FEATURE_OLDGLIBC
+        - FEATURE_OLDGLIBC [linux]
 
     {% if OLDGLIBC %}
     features:
@@ -38,6 +38,9 @@ requirements:
         - lpsolve
         - future
         - packaging
+        {% if OLDGLIBC %}
+        - oldglibc
+        {% endif %}
 
     run:
         - python
@@ -51,6 +54,9 @@ requirements:
         - pytables
         - xlrd
         - scipy
+        {% if OLDGLIBC %}
+        - oldglibc
+        {% endif %}
 
 test:
     requires:
