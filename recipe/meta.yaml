@@ -3,6 +3,12 @@
 {% set git_rev = "v0.2" %}
 {% set build_number = 0 %}
 
+{% if os.environ.get("FEATURE_OLDGLIBC", "0") == "1" %}
+    {% set OLDGLIBC = 1 %}
+{% else %}
+    {% set OLDGLIBC = 0 %}
+{% endif %}
+
 package:
     name: {{ name|lower }}
     version: {{ version }}
@@ -13,6 +19,14 @@ source:
 
 build:
     number: {{ build_number }}
+
+    script_env:
+        - FEATURE_OLDGLIBC
+
+    {% if OLDGLIBC %}
+    features:
+        - oldglibc
+    {% endif %}
 
 requirements:
     build:
