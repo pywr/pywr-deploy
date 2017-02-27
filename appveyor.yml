@@ -3,27 +3,30 @@ branches:
     - master
 
 environment:
+    # SDK v7.0 MSVC Express 2008's SetEnv.cmd script will fail if the
+    # /E:ON and /V:ON options are not enabled in the batch script intepreter
+    # See: http://stackoverflow.com/a/13751649/163740
+    CMD_IN_ENV: "cmd /E:ON /V:ON /C obvci_appveyor_python_build_env.cmd"
+    
     CONDA_UPLOAD_TOKEN:
         secure: qgP92GRS8WQsvxiUGJ6eoNcqY7Qu6nP9SkQi5yM+aPI2CbCv2y13kAIl+6sE3HqD
+
+    TARGET_ARCH: x64
     
     matrix:
-        - TARGET_ARCH: x64
-          CONDA_PY: 27
+        - CONDA_PY: 27
           CONDA_NPY: 111
           CONDA_INSTALL_LOCN: C:\\Miniconda-x64
           
-        - TARGET_ARCH: x64
-          CONDA_PY: 27
+        - CONDA_PY: 27
           CONDA_NPY: 112
           CONDA_INSTALL_LOCN: C:\\Miniconda-x64
 
-        - TARGET_ARCH: x64
-          CONDA_PY: 36
+        - CONDA_PY: 36
           CONDA_NPY: 111
           CONDA_INSTALL_LOCN: C:\\Miniconda35-x64
         
-        - TARGET_ARCH: x64
-          CONDA_PY: 36
+        - CONDA_PY: 36
           CONDA_NPY: 112
           CONDA_INSTALL_LOCN: C:\\Miniconda35-x64
 
@@ -44,11 +47,11 @@ install:
     - cmd: conda config --add channels snorfalorpagus
 
     # install build tools
-    - cmd: conda install -n root --quiet --yes conda-build anaconda-client
+    - cmd: conda install -n root --quiet --yes obvious-ci conda-build anaconda-client
 
 # Skip .NET project specific build phase.
 build: off
 
 test_script:
-    - cmd: conda build recipe --quiet
+    - cmd: "%CMD_IN_ENV% conda build recipe --quiet"
     - cmd: anaconda -t %CONDA_UPLOAD_TOKEN% upload -u pywr %CONDA_INSTALL_LOCN%\conda-bld\win-64\*.tar.bz2 --force
