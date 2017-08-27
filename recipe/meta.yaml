@@ -1,6 +1,6 @@
 {% set name = "pywr" %}
-{% set version = "0.3" %}
-{% set git_rev = "v0.3" %}
+{% set version = "0.4" %}
+{% set git_rev = "v0.4" %}
 {% set build_number = 0 %}
 
 {% if os.environ.get("FEATURE_OLDGLIBC", "0") == "1" %}
