@@ -10,10 +10,19 @@ env:
     global:
       - secure: "FQZjYwRhHgVf96a+GgZRgEZPuCirsRAjWUE9VLh7JVfLwGXV/ABLUa32/KLv4/R6sT1cXg9Eo4pUxCzjjfXwJQVvaB1ttn9iWg7JX56NhT7ZVs3h5PQPG03CSwU4Tsjt3LNAadZ5inik3X8MFi4O6xg3pqaHn/NmY1+zmDBiUws1ys0hB0QWLrOzEuGyXTxMcC6Hhw2To1d1fcVA6JSY2fw3cA4axxC9XXtLOt/hn9d5wXi+6mVNcMtfKkLrNUz5aXXJM2lli/SsBQTHaZVCT7zHIYaqwaBeklkrbESBrGHNEj+yKJo1+Uu+aNxs4vkCGTGvK1nrXNgG5onqKV/5JdEyM3UVz52lrYpkY/3DuAM+oia3sICkpOSMd8UmGZy6gAC0tWr0kiJMDiESA941bJ90UtXVOsR+Zv21UDGcmjvu8HL5TWYFyCMgsMDEyxd+iVeKSlZC8rHn9siByHG/JC1eerhikmoH9yNFBRdmX8ZKZ9SJ60nwG5coFZzwiaqoezLckYbX3rxNLa7rS6gqqCJrEZzmpHzN+hGeDj3yl21z9yiBy00Oydv5eF6EkLXLDYcYWai2nFHFIiTcIu5cAIk8HRWDFXvlW4op9ETgyCjtFZ3lV+9ExCURV+OfWUDPksPrzrA1YkJuXVfxdw+spWl2CAidOCQYYbkzQ7bOG4Q="
 
-    matrix:
-        - CONDA_PY=27  FEATURE_OLDGLIBC=0
-        - CONDA_PY=36  FEATURE_OLDGLIBC=0
-        - CONDA_PY=35  FEATURE_OLDGLIBC=1
+# Travis has limited OSX resources
+# Only do OSX on Python 3.6
+matrix:
+    include:
+      - os: linux
+        env: CONDA_PY=27
+      - os: linux
+        env: CONDA_PY=35  FEATURE_OLDGLIBC=1
+      - os: linux
+        env: CONDA_PY=36 BUILD_DOC=1
+      - os: osx
+        env: CONDA_PY=36
+             MACOSX_DEPLOYMENT_TARGET=10.9        
 
 install:
     - |
