@@ -52,6 +52,10 @@ script:
       
       # build
       conda build ./recipe
-      
-      # upload
-      anaconda -t ${CONDA_UPLOAD_TOKEN} upload -u pywr ${HOME}/miniconda3/conda-bld/linux-64/*.tar.bz2 --force
+
+# Upload to anaconda only if master branch and not a PR.      
+deploy:
+    provider: script
+    script: anaconda -t ${CONDA_UPLOAD_TOKEN} upload -u pywr ${HOME}/miniconda3/conda-bld/linux-64/*.tar.bz2 --force
+    on:
+        branch: master
