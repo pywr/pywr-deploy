@@ -8,7 +8,7 @@ branches:
 
 env:
     global:
-        - secure: "gcgOvzJsHQEB+6rQlKNDAgprS2vHlqDftywEHRTLVmmTOAPfcJr0ffamtnotEmGJZ1ivc5xsRqel18U9eXxqstYTFxKC2EVb1SfO0W3cQ8NDd6WI5fj1QASdvqixUHiENh3TbwLZ9XWIp2hDXdxs9NNT4/K623CabQgi8cSXCNw2gIeb+3ed4hy/0mDTNt+qt6A7cAXMDZ3PwXWZ00r1anC7lbWqPAEd7/stmVe7UKmwbP4h+utCCZg8zHvtJzqqU9n8CHveMWFsUdOd+1xcYAEYxVy7rBYdSgeu+/hrKOT0B2ArS6mesLLqk2KSe4UO1Aoh7KvyxxkNsxeWW0gx4Zig6DS/EYnk7OLEelwx5+A9QF36cfyRSNNquETkHUOSBE87LiEAuBpRFJSdL7WwmHyA8zziK3QK5VXdrmIeOyWM0AipJHeP6nkzoKC4r2JnW3jcmzYRtqV+MWewNZ/wUnZQl0mfyg9KG2hHjH+u0+oFUeQUHehJC6HTmdlSQKRntooyeTBdp6NigQxERJKZHcQ73Kwl3JXObmwAzZpHZnRCOoWcIZczgNdLaaHgCD3Nsm1nhJZClBHFtCvHQUhihtahxC0BGY/+vEdviuL1MsbnF5sZvmCjnZ6fUqKrVG0mptdluu6mKirQrEgbtSTH3uCfe2579N5neE/QJ/KWn34="
+      - secure: "FQZjYwRhHgVf96a+GgZRgEZPuCirsRAjWUE9VLh7JVfLwGXV/ABLUa32/KLv4/R6sT1cXg9Eo4pUxCzjjfXwJQVvaB1ttn9iWg7JX56NhT7ZVs3h5PQPG03CSwU4Tsjt3LNAadZ5inik3X8MFi4O6xg3pqaHn/NmY1+zmDBiUws1ys0hB0QWLrOzEuGyXTxMcC6Hhw2To1d1fcVA6JSY2fw3cA4axxC9XXtLOt/hn9d5wXi+6mVNcMtfKkLrNUz5aXXJM2lli/SsBQTHaZVCT7zHIYaqwaBeklkrbESBrGHNEj+yKJo1+Uu+aNxs4vkCGTGvK1nrXNgG5onqKV/5JdEyM3UVz52lrYpkY/3DuAM+oia3sICkpOSMd8UmGZy6gAC0tWr0kiJMDiESA941bJ90UtXVOsR+Zv21UDGcmjvu8HL5TWYFyCMgsMDEyxd+iVeKSlZC8rHn9siByHG/JC1eerhikmoH9yNFBRdmX8ZKZ9SJ60nwG5coFZzwiaqoezLckYbX3rxNLa7rS6gqqCJrEZzmpHzN+hGeDj3yl21z9yiBy00Oydv5eF6EkLXLDYcYWai2nFHFIiTcIu5cAIk8HRWDFXvlW4op9ETgyCjtFZ3lV+9ExCURV+OfWUDPksPrzrA1YkJuXVfxdw+spWl2CAidOCQYYbkzQ7bOG4Q="
 
     matrix:
         - CONDA_PY=27  FEATURE_OLDGLIBC=0
@@ -31,6 +31,7 @@ install:
       fi
       export PATH=${HOME}/miniconda3/bin:$PATH
       conda config --add channels conda-forge
+      conda config --add channels snorfalorpagus
       
       conda update --yes conda
       conda config --set show_channel_urls true
