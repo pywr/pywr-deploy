@@ -49,4 +49,11 @@ build: off
 
 test_script:
     - cmd: "%CMD_IN_ENV% conda build recipe --quiet"
-    - cmd: anaconda -t %CONDA_UPLOAD_TOKEN% upload -u pywr %CONDA_INSTALL_LOCN%\conda-bld\win-64\*.tar.bz2 --force
+    
+deploy:
+- provider: Script
+  on:
+    branch: master    
+    
+deploy_script:
+    - cmd: anaconda -t %CONDA_UPLOAD_TOKEN% upload -u pywr %CONDA_INSTALL_LOCN%\conda-bld\win-64\*.tar.bz2 --force    
