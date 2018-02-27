@@ -1,4 +1,4 @@
-language: python
+language: generic
 
 sudo: false
 
@@ -19,7 +19,7 @@ matrix:
       - os: linux
         env: CONDA_PY=35  FEATURE_OLDGLIBC=1
       - os: linux
-        env: CONDA_PY=36 BUILD_DOC=1
+        env: CONDA_PY=36
       - os: osx
         env: CONDA_PY=36
              MACOSX_DEPLOYMENT_TARGET=10.9        
