@@ -36,8 +36,13 @@ install:
     - cmd: conda config --add channels conda-forge
     - cmd: conda config --add channels snorfalorpagus
 
-    # install build tools
-    - cmd: conda install -n root --quiet --yes obvious-ci conda-build anaconda-client
+
+    # Update conda
+    - cmd: conda update --yes --quiet conda
+
+    # Configure the VM.
+    - cmd: conda install -n root --quiet --yes obvious-ci
+    - cmd: conda install -n root --quiet --yes conda-build anaconda-client jinja2 setuptools
 
 # Skip .NET project specific build phase.
 build: off
