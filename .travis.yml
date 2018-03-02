@@ -56,12 +56,6 @@ script:
 # Upload to anaconda only if master branch and not a PR.      
 deploy:
     provider: script
-    script:
-    - |
-      if [ `uname` == "Darwin" ]; then
-          anaconda -t ${CONDA_UPLOAD_TOKEN} upload -u pywr ${HOME}/miniconda3/conda-bld/osx-64/*.tar.bz2 --force
-      else
-          anaconda -t ${CONDA_UPLOAD_TOKEN} upload -u pywr ${HOME}/miniconda3/conda-bld/linux-64/*.tar.bz2 --force
-      fi
+    script: bash deploy.sh
     on:
         branch: master
