@@ -1,0 +1,10 @@
+cython
+numpy
+packaging
+pytest
+pandas
+networkx
+future
+xlrd
+tables
+scipy
