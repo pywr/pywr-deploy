@@ -4,14 +4,14 @@
 set -e -x
 
 export GLPK_VERSION=4.65
-export PYWR_VERSION=0.5.1
-export PYWR_TAG=v0.5.1
+export PYWR_VERSION=1.0.0
+export PYWR_TAG=v1.0.0
 export WORKDIR=${HOME}
 
 cd ${WORKDIR}
 
 # Download GLPK
-wget http://ftp.gnu.org/gnu/glpk/glpk-${GLPK_VERSION}.tar.gz
+curl http://ftp.gnu.org/gnu/glpk/glpk-${GLPK_VERSION}.tar.gz -o glpk-${GLPK_VERSION}.tar.gz
 tar -xvf glpk-${GLPK_VERSION}.tar.gz
 cd glpk-${GLPK_VERSION}
 
@@ -37,8 +37,11 @@ cd pywr
 git checkout ${PYWR_TAG}
 
 
+# Support binaries
+PYBINS=( /opt/python/cp36-cp36m/bin )
+
 # Compile wheels
-for PYBIN in /opt/python/cp3*/bin; do
+for PYBIN in "${PYBINS[@]}"; do
     "${PYBIN}/pip" install -r /io/dev-requirements.txt --no-build-isolation --only-binary pandas
     PYWR_BUILD_GLPK="true" "${PYBIN}/pip" wheel --no-deps ./ -w ${WORKDIR}/wheelhouse/
 done
@@ -49,7 +52,7 @@ for whl in ${WORKDIR}/wheelhouse/pywr*.whl; do
 done
 
 # Install packages and test
-for PYBIN in /opt/python/cp3*/bin/; do
+for PYBIN in "${PYBINS[@]}"; do
     "${PYBIN}/pip" install pywr --no-index -f /io/wheelhouse
     "${PYBIN}/py.test" ${WORKDIR}/pywr/tests
 done

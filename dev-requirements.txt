@@ -8,3 +8,6 @@ future
 xlrd
 tables
 scipy
+jupyter
+ipython
+matplotlib
