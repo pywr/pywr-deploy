@@ -43,6 +43,7 @@ requirements:
     - lp_solve
     - future
     - packaging
+    - setuptools_scm
     {% if OLDGLIBC %}
     - oldglibc
     {% endif %}
@@ -65,6 +66,7 @@ requirements:
     - packaging
     - jupyter
     - matplotlib
+    - setuptools_scm
     {% if OLDGLIBC %}
     - oldglibc
 {% endif %}
