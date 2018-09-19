@@ -1,2 +1,2 @@
-py.test ${SRC_DIR}/tests --solver=glpk
-py.test ${SRC_DIR}/tests --solver=lpsolve
+PYWR_SOLVER=glpk pytest -v ${SRC_DIR}/tests
+PYWR_SOLVER=lpsolve pytest -v ${SRC_DIR}/tests
