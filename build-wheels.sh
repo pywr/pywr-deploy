@@ -24,13 +24,6 @@ make install
 
 cd ${WORKDIR}
 
-# Fetch Pywr
-# Old version of wget/OpenSSL in the manylinux image does not with Github.
-# For now just manually download this archive.
-#wget  --no-check-certificate https://github.com/pywr/pywr/archive/${PYWR_VERSION}.tar.gz
-#tar -xvf pywr-${PYWR_VERSION}.tar.gz
-
-
 rm -rf pywr
 git clone https://github.com/pywr/pywr.git
 cd pywr
