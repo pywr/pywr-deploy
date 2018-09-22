@@ -46,7 +46,7 @@ After completing the wheels should be located in the `wheelhouse` folder of the 
 repository. These can then be uploaded to pypi using `twine`.
 
 ```
-pipenv run twine upload wheelhouse/*
+twine upload wheelhouse/*
 ```
  
 Note there is no deployment of Python 2.x wheels. It's too much effort.
