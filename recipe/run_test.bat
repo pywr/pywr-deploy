@@ -1,5 +1,7 @@
-py.test %SRC_DIR%\tests --solver=glpk
+set PYWR_SOLVER=glpk
+py.test -v %SRC_DIR%\tests
 if errorlevel 1 exit 1
 
-py.test %SRC_DIR%\tests --solver=lpsolve
+set PYWR_SOLVER=lpsolve
+py.test -v %SRC_DIR%\tests
 if errorlevel 1 exit 1
