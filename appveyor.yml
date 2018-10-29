@@ -6,6 +6,9 @@ branches:
 
 environment:
 
+  CONDA_UPLOAD_TOKEN:
+      secure: zM+Wg/LGnlAbuI5beKcGwEW3mLsGLzKjMMizpAaKoQopNXNL+/6FL9WVI6LWGd5D
+
   matrix:
     - TARGET_ARCH: x64
       CONDA_PY: 36
