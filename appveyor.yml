@@ -51,4 +51,4 @@ deploy:
     branch: master
     
 deploy_script:
-    - cmd: anaconda -t %CONDA_UPLOAD_TOKEN% upload -u pywr %CONDA_INSTALL_LOCN%\conda-bld\win-64\*.tar.bz2 --force    
+    - cmd: anaconda -t %CONDA_UPLOAD_TOKEN% upload -u pywr C:\bld\win-64\*.tar.bz2 --force    
