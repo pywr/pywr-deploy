@@ -1,0 +1,13 @@
+cython
+numpy
+packaging
+pytest
+pandas
+networkx
+future
+xlrd
+tables
+scipy
+jupyter
+ipython
+matplotlib
