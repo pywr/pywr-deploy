@@ -1,6 +1,6 @@
 {% set name = "pywr" %}
-{% set version = "0.5" %}
-{% set git_rev = "v0.5" %}
+{% set version = "1.0.0" %}
+{% set git_rev = "v1.0.0" %}
 {% set build_number = 0 %}
 
 {% if os.environ.get("FEATURE_OLDGLIBC", "0") == "1" %}
@@ -43,6 +43,7 @@ requirements:
     - lp_solve
     - future
     - packaging
+    - setuptools_scm
     {% if OLDGLIBC %}
     - oldglibc
     {% endif %}
@@ -59,6 +60,8 @@ requirements:
     - glpk
     - lp_solve
     - pytables
+    # Fix pytables on windows. See https://github.com/conda-forge/pytables-feedstock/issues/31#issuecomment-410695814
+    - snappy  # [win]    
     - xlrd
     - scipy
     - future
