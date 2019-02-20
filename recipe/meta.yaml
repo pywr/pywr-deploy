@@ -10,25 +10,24 @@
 {% endif %}
 
 package:
-    name: {{ name|lower }}
-    version: {{ version }}
+  name: {{ name|lower }}
+  version: {{ version }}
 
 source:
-    git_url: https://github.com/pywr/pywr.git
-    git_rev: {{ git_rev }}
+  git_url: https://github.com/pywr/pywr.git
+  git_rev: {{ git_rev }}
 
 build:
-    number: {{ build_number }}
+  number: {{ build_number }}
 
-    script_env:
-        - FEATURE_OLDGLIBC [linux]
+  script_env:
+      - FEATURE_OLDGLIBC [linux]
 
   features:
     - vc14  # [win]
   {% if OLDGLIBC %}
     - oldglibc
   {% endif %}
-
 
 requirements:
   build:
@@ -86,7 +85,7 @@ test:
     {% endif %}
 
 about:
-    home: https://github.com/pywr/pywr
-    license: GPL
-    license_file: LICENSE.txt
-    summary: Pywr is a generalised network resource allocation model written in Python
+  home: https://github.com/pywr/pywr
+  license: GPL
+  license_file: LICENSE.txt
+  summary: Pywr is a generalised network resource allocation model written in Python
