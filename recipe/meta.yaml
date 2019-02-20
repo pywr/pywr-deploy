@@ -62,9 +62,6 @@ requirements:
     - packaging
     - jupyter
     - matplotlib
-    {% if OLDGLIBC %}
-    - oldglibc
-    {% endif %}
 
 test:
   requires:
@@ -72,17 +69,9 @@ test:
     - nbconvert
     - pygmo
     - platypus-opt
-    {% if BUILD_DOC %}
-    - sphinx
-    - sphinx_rtd_theme
-    - numpydoc
-    {% endif %}
 
   source_files:
     - tests/*
-    {% if BUILD_DOC %}
-    - docs/*
-    {% endif %}
 
 about:
   home: https://github.com/pywr/pywr
