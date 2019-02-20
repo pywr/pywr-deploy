@@ -1,6 +1,6 @@
 {% set name = "pywr" %}
-{% set version = "1.0.0" %}
-{% set git_rev = "v1.0.0" %}
+{% set version = "1.1.0" %}
+{% set git_rev = "v1.1.0" %}
 {% set build_number = 0 %}
 
 {% if os.environ.get("FEATURE_OLDGLIBC", "0") == "1" %}
@@ -10,76 +10,71 @@
 {% endif %}
 
 package:
-    name: {{ name|lower }}
-    version: {{ version }}
+  name: {{ name|lower }}
+  version: {{ version }}
 
 source:
-    git_url: https://github.com/pywr/pywr.git
-    git_rev: {{ git_rev }}
+  git_url: https://github.com/pywr/pywr.git
+  git_rev: {{ git_rev }}
 
 build:
-    number: {{ build_number }}
+  number: {{ build_number }}
 
-    script_env:
-        - FEATURE_OLDGLIBC [linux]
+  script_env:
+      - FEATURE_OLDGLIBC [linux]
 
-    {% if OLDGLIBC %}
-    features:
-        - oldglibc
-    {% endif %}
+  features:
+    - vc14  # [win]
+  {% if OLDGLIBC %}
+    - oldglibc
+  {% endif %}
 
 requirements:
   build:
     - python
-    - vc 9  # [win and py27]
-    - vc 10  # [win and py34]
-    - vc 14  # [win and (py35 or py36)]
+    - vc 14  # [win]
     - setuptools
-    - numpy 1.8.*  # [not (win and (py35 or py36))]
-    - numpy 1.9.*  # [win and py35]
-    - numpy 1.11.*  # [win and py36]
+    - numpy
     - cython
     - glpk
     - lp_solve
     - future
     - packaging
+    - wheel
     - setuptools_scm
     {% if OLDGLIBC %}
     - oldglibc
     {% endif %}
   run:
     - python
-    - vc 9  # [win and py27]
-    - vc 10  # [win and py34]
-    - vc 14  # [win and (py35 or py36)]
-    - numpy >=1.8  # [not (win and (py35 or py36))]
-    - numpy >=1.9  # [win and py35]
-    - numpy >=1.11  # [win and py36]
+    - vc 14  # [win]
+    - {{ pin_compatible('numpy') }}
     - pandas
     - networkx
     - glpk
     - lp_solve
     - pytables
     # Fix pytables on windows. See https://github.com/conda-forge/pytables-feedstock/issues/31#issuecomment-410695814
-    - snappy  # [win]    
+    - snappy  # [win]
     - xlrd
     - scipy
     - future
     - packaging
     - jupyter
     - matplotlib
-    {% if OLDGLIBC %}
-    - oldglibc
-{% endif %}
 
 test:
-    requires:
-        - pytest
-    source_files:
-        - tests/*
+  requires:
+    - pytest
+    - nbconvert
+    - pygmo
+    - platypus-opt
+
+  source_files:
+    - tests/*
 
 about:
-    home: https://github.com/pywr/pywr
-    license: GPL
-    license_file: LICENSE.txt
-    summary: Pywr is a generalised network resource allocation model written in Python
+  home: https://github.com/pywr/pywr
+  license: GPL
+  license_file: LICENSE.txt
+  summary: Pywr is a generalised network resource allocation model written in Python

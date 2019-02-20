@@ -4,8 +4,8 @@
 set -e -x
 
 export GLPK_VERSION=4.65
-export PYWR_VERSION=1.0.0
-export PYWR_TAG=v1.0.0
+export PYWR_VERSION=1.1.0
+export PYWR_TAG=v1.1.0
 export WORKDIR=${HOME}
 
 cd ${WORKDIR}
