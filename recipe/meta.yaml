@@ -23,45 +23,40 @@ build:
     script_env:
         - FEATURE_OLDGLIBC [linux]
 
-    {% if OLDGLIBC %}
-    features:
-        - oldglibc
-    {% endif %}
+  features:
+    - vc14  # [win]
+  {% if OLDGLIBC %}
+    - oldglibc
+  {% endif %}
+
 
 requirements:
   build:
     - python
-    - vc 9  # [win and py27]
-    - vc 10  # [win and py34]
-    - vc 14  # [win and (py35 or py36)]
+    - vc 14  # [win]
     - setuptools
-    - numpy 1.8.*  # [not (win and (py35 or py36))]
-    - numpy 1.9.*  # [win and py35]
-    - numpy 1.11.*  # [win and py36]
+    - numpy
     - cython
     - glpk
     - lp_solve
     - future
     - packaging
+    - wheel
     - setuptools_scm
     {% if OLDGLIBC %}
     - oldglibc
     {% endif %}
   run:
     - python
-    - vc 9  # [win and py27]
-    - vc 10  # [win and py34]
-    - vc 14  # [win and (py35 or py36)]
-    - numpy >=1.8  # [not (win and (py35 or py36))]
-    - numpy >=1.9  # [win and py35]
-    - numpy >=1.11  # [win and py36]
+    - vc 14  # [win]
+    - {{ pin_compatible('numpy') }}
     - pandas
     - networkx
     - glpk
     - lp_solve
     - pytables
     # Fix pytables on windows. See https://github.com/conda-forge/pytables-feedstock/issues/31#issuecomment-410695814
-    - snappy  # [win]    
+    - snappy  # [win]
     - xlrd
     - scipy
     - future
@@ -70,13 +65,25 @@ requirements:
     - matplotlib
     {% if OLDGLIBC %}
     - oldglibc
-{% endif %}
+    {% endif %}
 
 test:
-    requires:
-        - pytest
-    source_files:
-        - tests/*
+  requires:
+    - pytest
+    - nbconvert
+    - pygmo
+    - platypus-opt
+    {% if BUILD_DOC %}
+    - sphinx
+    - sphinx_rtd_theme
+    - numpydoc
+    {% endif %}
+
+  source_files:
+    - tests/*
+    {% if BUILD_DOC %}
+    - docs/*
+    {% endif %}
 
 about:
     home: https://github.com/pywr/pywr
